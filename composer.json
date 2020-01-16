@@ -1,6 +1,6 @@
 {
-    "name": "zendframework/zendframework1",
-    "description": "Zend Framework 1",
+    "name": "academ/zendframework1",
+    "description": "Zend Framework 1 - Academ Version",
     "type": "library",
     "keywords": [
         "framework",
