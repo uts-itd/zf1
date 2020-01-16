@@ -20,12 +20,12 @@
 /**
  * @see Zend_Json
  */
-require_once 'Zend/Json.php';
+// require_once 'Zend/Json.php';
 
 /**
  * @see Zend_ProgressBar_Adapter
  */
-require_once 'Zend/ProgressBar/Adapter.php';
+// require_once 'Zend/ProgressBar/Adapter.php';
 
 /**
  * Zend_ProgressBar_Adapter_JsPush offers a simple method for updating a
@@ -101,7 +101,7 @@ class Zend_ProgressBar_Adapter_JsPush extends Zend_ProgressBar_Adapter
             'text'          => $text
         );
 
-        $data = '<script type="text/javascript">'
+        $data = '<script>'
               . 'parent.' . $this->_updateMethodName . '(' . Zend_Json::encode($arguments) . ');'
               . '</script>';
 
@@ -120,7 +120,7 @@ class Zend_ProgressBar_Adapter_JsPush extends Zend_ProgressBar_Adapter
             return;
         }
 
-        $data = '<script type="text/javascript">'
+        $data = '<script>'
               . 'parent.' . $this->_finishMethodName . '();'
               . '</script>';
 

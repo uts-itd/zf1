@@ -24,7 +24,7 @@
 /**
  * @see Zend_Db_Table_Row_Abstract
  */
-require_once 'Zend/Db/Table/Row/Abstract.php';
+// require_once 'Zend/Db/Table/Row/Abstract.php';
 
 
 /**
@@ -39,4 +39,13 @@ require_once 'Zend/Db/Table/Row/Abstract.php';
  */
 class Zend_Db_Table_Row extends Zend_Db_Table_Row_Abstract
 {
+	/**
+	 * Resets the record back to it's original state.
+	 *
+	 * @return void
+	 */
+	public function reset()
+	{
+		$this->_data = $this->_cleanData;
+	}
 }

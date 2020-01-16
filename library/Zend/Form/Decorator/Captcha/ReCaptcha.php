@@ -20,7 +20,7 @@
  */
 
 /** @see Zend_Form_Decorator_Abstract */
-require_once 'Zend/Form/Decorator/Abstract.php';
+// require_once 'Zend/Form/Decorator/Abstract.php';
 
 /**
  * ReCaptcha-based captcha decorator
@@ -82,7 +82,7 @@ class Zend_Form_Decorator_Captcha_ReCaptcha extends Zend_Form_Decorator_Abstract
         // zendBindEvent mediates between Mozilla's addEventListener and
         // IE's sole support for addEvent.
         $js =<<<EOJ
-<script type="text/javascript" language="JavaScript">
+<script language="JavaScript">
 function windowOnLoad(fn) {
     var old = window.onload;
     window.onload = function() {

@@ -21,7 +21,7 @@
  */
 
 /** Zend_Controller_Router_Route_Abstract */
-require_once 'Zend/Controller/Router/Route/Abstract.php';
+// require_once 'Zend/Controller/Router/Route/Abstract.php';
 
 /**
  * Module Route
@@ -224,7 +224,7 @@ class Zend_Controller_Router_Route_Module extends Zend_Controller_Router_Route_A
      * @param boolean $partial
      * @return string Route path with user submitted parameters
      */
-    public function assemble($data = array(), $reset = false, $encode = true, $partial = false)
+    public function assemble($data = array(), $reset = false, $encode = true)
     {
         if (!$this->_keysSet) {
             $this->_setRequestKeys();
