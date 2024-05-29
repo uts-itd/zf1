@@ -57,10 +57,11 @@ class Zend_Log_Formatter_Xml extends Zend_Log_Formatter_Abstract
      */
     public function __construct($options = array())
     {
+        $origOptions = $options;
         if ($options instanceof Zend_Config) {
             $options = $options->toArray();
         } elseif (!is_array($options)) {
-            $args = func_get_args();
+            $args = $origOptions;
 
             $options = array(
             	'rootElement' => array_shift($args)

@@ -478,7 +478,7 @@ class Zend_Session extends Zend_Session_Abstract
                 // require_once 'Zend/Session/Exception.php';
                 set_error_handler(array('Zend_Session_Exception', 'handleSessionStartError'), $errorLevel);
             }
-
+            //ini_set('session.cookie_samesite', 'Strict');
             $startedCleanly = session_start();
 
             if (self::$_throwStartupExceptions) {

@@ -70,6 +70,7 @@ class Zend_Validate_InArray extends Zend_Validate_Abstract
      */
     public function __construct($options)
     {
+        $origOptions = $options;
         if ($options instanceof Zend_Config) {
             $options = $options->toArray();
         } else if (!is_array($options)) {
@@ -79,11 +80,11 @@ class Zend_Validate_InArray extends Zend_Validate_Abstract
             $count = func_num_args();
             $temp  = array();
             if ($count > 1) {
-                $temp['haystack'] = func_get_arg(0);
-                $temp['strict']   = func_get_arg(1);
+                $temp['haystack'] = $origOptions[0];
+                $temp['strict']   = $origOptions[1];
                 $options = $temp;
             } else {
-                $temp = func_get_arg(0);
+                $temp = $origOptions[0];
                 if (!array_key_exists('haystack', $options)) {
                     $options = array();
                     $options['haystack'] = $temp;

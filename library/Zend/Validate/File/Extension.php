@@ -75,12 +75,13 @@ class Zend_Validate_File_Extension extends Zend_Validate_Abstract
      */
     public function __construct($options)
     {
+        $origOptions = $options;
         if ($options instanceof Zend_Config) {
             $options = $options->toArray();
         }
 
         if (1 < func_num_args()) {
-            $case = func_get_arg(1);
+            $case = $origOptions[1];
             $this->setCase($case);
         }
 
@@ -121,7 +122,7 @@ class Zend_Validate_File_Extension extends Zend_Validate_Abstract
      */
     public function getExtension()
     {
-        $extension = explode(',', $this->_extension);
+        $extension = explode(',', ($this->_extension ?? ''));
 
         return $extension;
     }

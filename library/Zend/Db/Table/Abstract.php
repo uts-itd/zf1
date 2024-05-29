@@ -234,7 +234,13 @@ abstract class Zend_Db_Table_Abstract
 
     protected $_defaultSource = self::DEFAULT_NONE;
     protected $_defaultValues = array();
-
+    private $var;
+    public function __set(string $name, mixed $value): void {
+        $this->var[$name] = $value;
+    }
+    public function __get(string $name): mixed {
+        return $this->var[$name] ?? null;
+    }
     /**
      * Constructor.
      *

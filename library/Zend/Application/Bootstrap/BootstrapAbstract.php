@@ -49,6 +49,7 @@ abstract class Zend_Application_Bootstrap_BootstrapAbstract
      * @var Zend_Application|Zend_Application_Bootstrap_Bootstrapper
      */
     protected $_application;
+    //public $frontController;
 
     /**
      * @var array Internal resource methods (resource/method pairs)

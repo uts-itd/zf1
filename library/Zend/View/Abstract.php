@@ -36,6 +36,7 @@
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 abstract class Zend_View_Abstract implements Zend_View_Interface
 {
     /**
@@ -270,7 +271,11 @@ abstract class Zend_View_Abstract implements Zend_View_Interface
             trigger_error('Key "' . $key . '" does not exist', E_USER_NOTICE);
         }
 
-        return null;
+        if ('_' != substr($key, 0, 1)) {
+            return $this->$key ?? null;
+        }
+
+        return false;
     }
 
     /**
@@ -902,11 +907,27 @@ abstract class Zend_View_Abstract implements Zend_View_Interface
     public function escape($var)
     {
         if (in_array($this->_escape, array('htmlspecialchars', 'htmlentities'))) {
-            return call_user_func($this->_escape, $var, ENT_COMPAT, $this->_encoding);
+            if (is_array($var)) {
+                $newvar = [];
+                foreach ($var as $v) {
+                    $newvar[] = call_user_func($this->_escape, ($v ?? ''), ENT_COMPAT, $this->_encoding);
+                }
+                return $newvar;
+            } else {
+                return call_user_func($this->_escape, ($var ?? ''), ENT_COMPAT, $this->_encoding);
+            }
         }
 
         if (1 == func_num_args()) {
-            return call_user_func($this->_escape, $var);
+            if (is_array($var)) {
+                $newvar = [];
+                foreach ($var as $v) {
+                    $newvar[] = call_user_func($this->_escape, ($v ?? ''));
+                }
+                return $newvar;
+            } else {
+                return call_user_func($this->_escape, ($var ?? ''));
+            }
         }
         $args = func_get_args();
         return call_user_func_array($this->_escape, $args);

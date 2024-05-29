@@ -105,6 +105,7 @@ class Zend_Validate_File_Count extends Zend_Validate_Abstract
      */
     public function __construct($options)
     {
+        $origOptions = $options;
         if ($options instanceof Zend_Config) {
             $options = $options->toArray();
         } elseif (is_string($options) || is_numeric($options)) {
@@ -115,8 +116,8 @@ class Zend_Validate_File_Count extends Zend_Validate_Abstract
         }
 
         if (1 < func_num_args()) {
-            $options['min'] = func_get_arg(0);
-            $options['max'] = func_get_arg(1);
+            $options['min'] = $origOptions[0];
+            $options['max'] = $origOptions[1];
         }
 
         if (isset($options['min'])) {

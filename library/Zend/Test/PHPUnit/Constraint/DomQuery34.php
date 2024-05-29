@@ -138,6 +138,7 @@ class Zend_Test_PHPUnit_Constraint_DomQuery34 extends PHPUnit_Framework_Constrai
      */
     public function evaluate($other, $assertType = null)
     {
+        $origAssertType = $assertType;
         if (strstr($assertType, 'Not')) {
             $this->setNegate(true);
             $assertType = str_replace('Not', '', $assertType);
@@ -159,7 +160,7 @@ class Zend_Test_PHPUnit_Constraint_DomQuery34 extends PHPUnit_Framework_Constrai
         $domQuery = new Zend_Dom_Query($other);
         $domQuery->registerXpathNamespaces($this->_xpathNamespaces);
         $result   = $domQuery->$method($this->_path);
-        $argv     = func_get_args();
+        $argv     = $origAssertType();
         $argc     = func_num_args();
 
         switch ($assertType) {

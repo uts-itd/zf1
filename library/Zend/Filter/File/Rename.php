@@ -53,6 +53,7 @@ class Zend_Filter_File_Rename implements Zend_Filter_Interface
      */
     public function __construct($options)
     {
+        $origOptions = $options;
         if ($options instanceof Zend_Config) {
             $options = $options->toArray();
         } elseif (is_string($options)) {
@@ -63,7 +64,7 @@ class Zend_Filter_File_Rename implements Zend_Filter_Interface
         }
 
         if (1 < func_num_args()) {
-            $argv = func_get_args();
+            $argv = $origOptions;
             array_shift($argv);
             $source    = array_shift($argv);
             $overwrite = false;

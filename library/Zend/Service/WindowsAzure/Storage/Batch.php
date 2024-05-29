@@ -76,6 +76,10 @@ class Zend_Service_WindowsAzure_Storage_Batch
         $this->_baseUrl       = $baseUrl;
         $this->_beginBatch();
     }
+
+    public function __destruct()
+    {
+    }
     
 	/**
 	 * Get base URL for creating requests
@@ -105,7 +109,7 @@ class Zend_Service_WindowsAzure_Storage_Batch
         unset($this->_operations);
         $this->_storageClient->setCurrentBatch(null);
         $this->_storageClient = null;
-        unset($this);
+        $this->__destruct();
     }
 
 	/**

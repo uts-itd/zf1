@@ -72,10 +72,11 @@ class Zend_Filter_Inflector implements Zend_Filter_Interface
      */
     public function __construct($options = null)
     {
+        $tmp = func_get_args();
         if ($options instanceof Zend_Config) {
             $options = $options->toArray();
         } else if (!is_array($options)) {
-            $options = func_get_args();
+            $options = $tmp;
             $temp    = array();
 
             if (!empty($options)) {

@@ -103,7 +103,7 @@ class Zend_Feed_Entry_Atom extends Zend_Feed_Entry_Abstract
                 // Redirect
                 case 3:
                     $deleteUri = $response->getHeader('Location');
-                    continue;
+                    continue 2;
                 // Error
                 default:
                     /**
@@ -194,14 +194,14 @@ class Zend_Feed_Entry_Atom extends Zend_Feed_Entry_Abstract
         }
 
         // Update internal properties using $client->responseBody;
-        @ini_set('track_errors', 1);
+        //@ini_set('track_errors', 1);
         $newEntry = new DOMDocument;
         $newEntry = @Zend_Xml_Security::scan($response->getBody(), $newEntry);
-        @ini_restore('track_errors');
+        //@ini_restore('track_errors');
 
         if (!$newEntry) {
             // prevent the class to generate an undefined variable notice (ZF-2590)
-            if (!isset($php_errormsg)) {
+            if ((error_get_last()['message'] ?? '') == '') {
                 if (function_exists('xdebug_is_enabled')) {
                     $php_errormsg = '(error message not available, when XDebug is running)';
                 } else {

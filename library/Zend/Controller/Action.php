@@ -90,6 +90,13 @@ abstract class Zend_Controller_Action implements Zend_Controller_Action_Interfac
      * @var Zend_View_Interface
      */
     public $view;
+    protected $var;
+    public function __set(string $name, mixed $value): void {
+        $this->var[$name] = $value;
+    }
+    public function __get(string $name): mixed {
+        return $this->var[$name] ?? null;
+    }
 
     /**
      * Helper Broker to assist in routing help requests to the proper object

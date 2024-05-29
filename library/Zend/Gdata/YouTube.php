@@ -650,16 +650,16 @@ class Zend_Gdata_YouTube extends Zend_Gdata_Media
     public static function parseFormUploadTokenResponse($response)
     {
         // Load the feed as an XML DOMDocument object
-        @ini_set('track_errors', 1);
+        //@ini_set('track_errors', 1);
         $doc = new DOMDocument();
         $success = @$doc->loadXML($response);
-        @ini_restore('track_errors');
+        //@ini_restore('track_errors');
 
         if (!$success) {
             // require_once 'Zend/Gdata/App/Exception.php';
             throw new Zend_Gdata_App_Exception(
                 "Zend_Gdata_YouTube::parseFormUploadTokenResponse - " .
-                "DOMDocument cannot parse XML: $php_errormsg");
+                "DOMDocument cannot parse XML: ".(error_get_last()['message'] ?? ''));
         }
         $responseElement = $doc->getElementsByTagName('response')->item(0);
 

@@ -127,10 +127,11 @@ abstract class Zend_Translate_Adapter {
      */
     public function __construct($options = array())
     {
+        $origOptions = $options;
         if ($options instanceof Zend_Config) {
             $options = $options->toArray();
         } else if (func_num_args() > 1) {
-            $args               = func_get_args();
+            $args               = $origOptions;
             $options            = array();
             $options['content'] = array_shift($args);
 
@@ -196,10 +197,11 @@ abstract class Zend_Translate_Adapter {
      */
     public function addTranslation($options = array())
     {
+        $origOptions = $options;
         if ($options instanceof Zend_Config) {
             $options = $options->toArray();
         } else if (func_num_args() > 1) {
-            $args = func_get_args();
+            $args = $origOptions;
             $options            = array();
             $options['content'] = array_shift($args);
 
@@ -585,10 +587,11 @@ abstract class Zend_Translate_Adapter {
      */
     private function _addTranslationData($options = array())
     {
+        $origOptions = $options;
         if ($options instanceof Zend_Config) {
             $options = $options->toArray();
         } else if (func_num_args() > 1) {
-            $args = func_get_args();
+            $args = $origOptions;
             $options['content'] = array_shift($args);
 
             if (!empty($args)) {

@@ -141,9 +141,10 @@ class Zend_Json_Server extends Zend_Server_Abstract
      */
     public function setClass($class, $namespace = '', $argv = null)
     {
+        $initargv = $argv;
         $argv = null;
         if (3 < func_num_args()) {
-            $argv = func_get_args();
+            $argv = $initargv;
             $argv = array_slice($argv, 3);
         }
 

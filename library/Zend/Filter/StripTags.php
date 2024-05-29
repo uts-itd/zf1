@@ -82,11 +82,12 @@ class Zend_Filter_StripTags implements Zend_Filter_Interface
      */
     public function __construct($options = null)
     {
+        $tmp = func_get_args();
         if ($options instanceof Zend_Config) {
             $options = $options->toArray();
         } else if ((!is_array($options)) || (is_array($options) && !array_key_exists('allowTags', $options) &&
             !array_key_exists('allowAttribs', $options) && !array_key_exists('allowComments', $options))) {
-            $options = func_get_args();
+            $options = $tmp;
             $temp['allowTags'] = array_shift($options);
             if (!empty($options)) {
                 $temp['allowAttribs'] = array_shift($options);

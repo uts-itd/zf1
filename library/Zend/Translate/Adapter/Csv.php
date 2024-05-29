@@ -44,6 +44,7 @@ class Zend_Translate_Adapter_Csv extends Zend_Translate_Adapter
      */
     public function __construct($options = array())
     {
+        $tmp = func_get_args();
         $this->_options['delimiter'] = ";";
         $this->_options['length']    = 0;
         $this->_options['enclosure'] = '"';
@@ -51,7 +52,7 @@ class Zend_Translate_Adapter_Csv extends Zend_Translate_Adapter
         if ($options instanceof Zend_Config) {
             $options = $options->toArray();
         } else if (func_num_args() > 1) {
-            $args               = func_get_args();
+            $args               = $tmp;
             $options            = array();
             $options['content'] = array_shift($args);
 

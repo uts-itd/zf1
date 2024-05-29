@@ -919,6 +919,7 @@ class Zend_Search_Lucene implements Zend_Search_Lucene_Interface
      */
     public function find($query)
     {
+        $origquery = $query;
         if (is_string($query)) {
             // require_once 'Zend/Search/Lucene/Search/QueryParser.php';
 
@@ -985,7 +986,7 @@ class Zend_Search_Lucene implements Zend_Search_Lucene_Interface
         } else {
             // sort by given field names
 
-            $argList    = func_get_args();
+            $argList    = $origquery;
             $fieldNames = $this->getFieldNames();
             $sortArgs   = array();
 

@@ -178,6 +178,7 @@ class Zend_Paginator implements Countable, IteratorAggregate
      * @var Zend_View_Interface
      */
     protected $_view = null;
+    public $pgCols = [];
 
     /**
      * Adds an adapter prefix path to the plugin loader.
@@ -514,6 +515,7 @@ class Zend_Paginator implements Countable, IteratorAggregate
      *
      * @return integer
      */
+    #[\ReturnTypeWillChange]
     public function count()
     {
         if (!$this->_pageCount) {
@@ -818,6 +820,7 @@ class Zend_Paginator implements Countable, IteratorAggregate
      *
      * @return Traversable
      */
+    #[\ReturnTypeWillChange]
     public function getIterator()
     {
         return $this->getCurrentItems();
